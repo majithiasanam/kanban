@@ -1,0 +1,104 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #97b9ca; */
+}
+
+h1 {
+    text-align: center;
+    padding: 0.5em;
+    background-color: #6495ed;
+    border: 1px solid #6495ed;
+    margin: 0 0 1em;
+}
+
+h5 {
+    text-align: center;
+}
+
+hr {
+    background-color: white;
+}
+
+.main-container {
+    flex: 1;
+    border: 3px solid gray;
+    border-radius: 1em;
+    padding: 0.5em;
+    margin: 0 0.5em;
+    height: 95%;
+    width: 98%;
+    background-color: black;
+    color: white;
+}
+
+.board {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5em;
+    margin: 0 0.5em;
+}
+
+.board_header {
+    align-items: center;
+    margin: 1.5em 1em 2.5em;
+    display: flex;
+}
+
+.board_header p {
+    margin: 0;
+}
+
+.board_members {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.board_members p {
+    margin-right: 1em;
+}
+
+.board_members i {
+    margin: 0 0.5em;
+}
+
+.board_members p {
+    width: fit-content;
+}
+
+.column i {
+    right: 0;
+    position: absolute;
+    margin-right: 1em;
+}
+
+.column_tasks {
+    padding: 0.5em;
+}
+
+.task {
+    padding: 0.5em;
+    transform: rotate(-15deg);
+    margin: 15% 10%;
+    color: black;
+    background-color: #d6d653;
+}
+
+.task * {
+    margin: 0.25em;
+}
+
+.task_desc {
+    font-family: 'Charm', cursive;
+    padding: 1em 0;
+}
+
+.task h6 {
+    text-align: right;
+    margin-top: 1em;
+    font-weight: 700;
+    font-size: 1em;
+}

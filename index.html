@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="kanbanMain">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cleartax Board</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+
+    <!------------------- Styles ----------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Charm&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+
+    <!------------------- Scripts ---------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/961c06fbb4.js" crossorigin="anonymous"></script>
+    <script src="./scripts/angular-ui-bootstrap-tpls.js"></script>
+
+    <!-------------------- Custom Scripts --------------------->
+    <script src="./modules/main/kanban.module.js"></script>
+    <script src="./modules/main/components/board/board.controller.js"></script>
+    <script src="./modules/main/components/board/board.directive.js"></script>
+    <script src="./modules/main/components/column/column.controller.js"></script>
+    <script src="./modules/main/components/column/column.directive.js"></script>
+    <script src="./modules/main/components/task/task.controller.js"></script>
+    <script src="./modules/main/components/task/task.directive.js"></script>
+    <script src="./modules/main/components/newTask/newTask.controller.js"></script>
+    <script src="./services/board.service.js"></script>
+    <script src="./constants/app.constants.js"></script>
+
+    <!-------------------- Templates --------------------------->
+    <script type="text/ng-template" id="board.tpl.html">
+        <div>
+            <div class="row board_header">
+                <h4>Task Board</h4>
+                <div class="board_members">
+                    <p>Members:</p>
+                    <i class="fa fa-user" aria-hidden="true" tooltip-placement="bottom" uib-tooltip="{{username}}" ng-repeat="username in BoardCtrl.users"></i>
+                </div>
+            </div>
+            <div class="row board">
+                <board-column status="columnName" ng-repeat="(column, columnName) in BoardCtrl.columns"></board-column>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="column.tpl.html">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 column">
+            <h5>{{columnCtrl.status}}</h5>
+            <hr>
+            <div class="column_tasks">
+                <task-card
+                    description="details.description" due-date="details.dueDate" assignee="details.assignee" 
+                    ng-repeat="(taskId, details) in columnCtrl.tasks">
+                </task-card>
+            </div>
+            <hr>
+            <i class="fa fa-plus-circle" aria-hidden="true" ng-click="columnCtrl.addTask()"></i>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="task.tpl.html">
+        <div class="task">
+            <div class="task_desc">{{taskCtrl.description}}</div>
+            <div>Due: {{taskCtrl.dueDate}}</div>
+            <h6>{{taskCtrl.assignee}}</h6>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="newTask.tpl.html">
+        <!-- <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">New Task</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <textarea></textarea>
+            <input type="text" class="form-control" uib-datepicker-popup="'dd-MMMM-yyyy'" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Save</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div> -->
+    </script>
+</head>
+
+<body>
+    <h1>Cleartax Board</h1>
+    <div class="main-container">
+        <board></board>
+    </div>
+</body>
+
+</html>
